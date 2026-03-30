@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Records</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/records.css' %}">
+</head>
+<body>
+    <div class="dashboard-container" style="max-width: 900px;">
+        <div class="header-section">
+            <h1>Attendance Database</h1>
+            <p>Live log of all verified system scans.</p>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Student Name</th>
+                        <th>Class & Section</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr>
+                        <td><span class="badge">Verified</span></td>
+                        <td>{{ log.student.name }}</td>
+                        <td>{{ log.student.class_section }}</td>
+                        <td>{{ log.date }}</td>
+                        <td>{{ log.time }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #94a3b8;">No attendance records found yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <a href="{% url 'home' %}" class="btn-back">⬅ Return to Main Portal</a>
+    </div>
+</body>
+</html>

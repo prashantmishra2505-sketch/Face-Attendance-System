@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Attendance Monitor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/attendance.css' %}">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h2><span class="pulse-dot"></span> LIVE ATTENDANCE MONITOR</h2>
+            <p class="status">System Active & Scanning Area</p>
+        </div>
+        
+        <div class="video-wrapper">
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+            
+            <img src="{% url 'video_feed' %}" class="live-feed">
+        </div>
+        
+        <div class="controls">
+            <a href="{% url 'home' %}" class="btn-back" id="leave-btn">⬅ Shut Down Camera & Return</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('leave-btn').addEventListener('click', function() {
+            document.querySelector('.live-feed').src = "";
+        });
+        window.addEventListener('beforeunload', function() {
+            document.querySelector('.live-feed').src = "";
+        });
+    </script>
+</body>
+</html>

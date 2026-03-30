@@ -1,0 +1,93 @@
+body { 
+    font-family: 'Poppins', sans-serif; 
+    text-align: center; 
+    background-color: #0f172a; 
+    color: #e2e8f0;
+    margin: 0;
+    padding: 40px 20px;
+}
+
+.dashboard {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header h2 {
+    color: #f8fafc;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Red recording dot animation */
+.pulse-dot {
+    display: block;
+    width: 14px;
+    height: 14px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.status { color: #10b981; font-weight: 600; margin-bottom: 30px; }
+
+.video-wrapper { 
+    position: relative;
+    display: inline-block; 
+    padding: 10px;
+    background-color: #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #334155;
+}
+
+.live-feed { 
+    display: block; 
+    border-radius: 8px;
+    width: 640px;
+    height: 480px;
+    object-fit: cover;
+    background-color: #000;
+}
+
+.corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: #38bdf8;
+    border-style: solid;
+    z-index: 10;
+}
+.top-left { top: -2px; left: -2px; border-width: 3px 0 0 3px; border-top-left-radius: 12px; }
+.top-right { top: -2px; right: -2px; border-width: 3px 3px 0 0; border-top-right-radius: 12px;}
+.bottom-left { bottom: -2px; left: -2px; border-width: 0 0 3px 3px; border-bottom-left-radius: 12px;}
+.bottom-right { bottom: -2px; right: -2px; border-width: 0 3px 3px 0; border-bottom-right-radius: 12px;}
+
+.controls { margin-top: 40px; }
+
+.btn-back {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #ef4444;
+    border-color: #ef4444;
+    transform: translateY(-2px);
+}

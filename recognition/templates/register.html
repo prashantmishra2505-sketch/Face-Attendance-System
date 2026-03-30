@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Enrollment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    <div class="enrollment-wrapper">
+        <div class="header">
+            <h2>Student Enrollment</h2>
+            <p>Please look directly at the camera to register your face.</p>
+        </div>
+        
+        <div class="split-card">
+            <div class="camera-section">
+                <div class="video-frame">
+                    <video id="webcam" autoplay playsinline></video>
+                    <img id="snapshot" src="" alt="Your Snapshot" style="display: none;"> 
+                    <canvas id="canvas" style="display:none;"></canvas>
+                </div>
+                
+                <div class="camera-controls">
+                    <button type="button" id="capture-btn" class="btn-primary">📸 Snap Photo</button>
+                    <button type="button" id="retake-btn" class="btn-danger" style="display:none;">🔄 Retake</button>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <form method="POST" id="enrollment-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    
+                    <input type="hidden" name="base64_image" id="base64_image">
+                    <button type="submit" id="submit-btn" class="btn-success" disabled>Save to Database</button>
+                </form>
+            </div>
+        </div>
+        
+        <a href="{% url 'home' %}" class="back-link">⬅ Cancel & Return Home</a>
+    </div>
+
+    <script>
+        const webcam = document.getElementById('webcam');
+        const canvas = document.getElementById('canvas');
+        const snapshot = document.getElementById('snapshot');
+        const captureBtn = document.getElementById('capture-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const base64Input = document.getElementById('base64_image');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => { webcam.srcObject = stream; })
+            .catch(err => { alert("Camera access denied or error: " + err); });
+
+        captureBtn.addEventListener('click', () => {
+            canvas.width = webcam.videoWidth;
+            canvas.height = webcam.videoHeight;
+            canvas.getContext('2d').drawImage(webcam, 0, 0);
+
+            const imageData = canvas.toDataURL('image/jpeg');
+            base64Input.value = imageData;
+            
+            snapshot.src = imageData;
+            snapshot.style.display = 'block';
+            webcam.style.display = 'none';
+            
+            captureBtn.style.display = 'none';
+            retakeBtn.style.display = 'inline-block';
+            submitBtn.disabled = false;
+        });
+
+        retakeBtn.addEventListener('click', () => {
+            snapshot.style.display = 'none';
+            webcam.style.display = 'block';
+            captureBtn.style.display = 'inline-block';
+            retakeBtn.style.display = 'none';
+            submitBtn.disabled = true;
+            base64Input.value = '';
+        });
+    </script>
+</body>
+</html>

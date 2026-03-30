@@ -1,0 +1,45 @@
+/* --- Global Styles --- */
+body { 
+    font-family: sans-serif; 
+    text-align: center; 
+    margin-top: 50px; 
+    background-color: #f4f4f9; 
+    line-height: 1.6;
+}
+
+/* --- Enrollment Page Styles --- */
+.form-container { 
+    max-width: 500px; 
+    margin: 0 auto; /* Centers the box */
+    border: 1px solid #ddd; 
+    padding: 20px; 
+    border-radius: 8px; 
+    background-color: white;
+}
+
+button { 
+    background: #28a745; 
+    color: white; 
+    padding: 10px 15px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #218838;
+}
+
+/* --- Attendance Video Styles --- */
+.video-container { 
+    border: 5px solid #333; 
+    border-radius: 10px; 
+    display: inline-block; 
+    overflow: hidden; 
+    background-color: #000;
+}
+
+img { 
+    display: block; 
+}

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSSATEN Face Attendance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header-section">
+            <div class="logo-placeholder">JSS</div>
+            <h1>JSSATEN Face Attendance</h1>
+            <p>AI-Powered Biometric Tracking System</p>
+        </div>
+        
+        <div class="action-grid">
+            <a href="{% url 'register' %}" class="card-btn btn-register">
+                <span class="icon">📝</span>
+                <h3>New Registration</h3>
+                <p>Enroll a new student into the database.</p>
+            </a>
+            
+            <a href="{% url 'attendance' %}" class="card-btn btn-attendance">
+                <span class="icon">📷</span>
+                <h3>Live Attendance</h3>
+                <p>Start the camera and monitor log-ins.</p>
+            </a>
+
+            <a href="{% url 'records' %}" class="card-btn btn-records" style="border-color: #334155;">
+                <span class="icon">📊</span>
+                <h3>View Records</h3>
+                <p>Access the database log of all attendances.</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
